@@ -17,16 +17,16 @@ class Arsenal:
 
     def _remove_bullets_offscreen(self):
         for bullet in self.arsenal.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.left >= self.settings.screen_w:
                 self.arsenal.remove(bullet)
 
     def draw(self) -> None:
         for bullet in self.arsenal:
             bullet.draw_bullet()
 
-    def fire_bullet(self) -> bool:
+    def fire_bullet(self, y_pos: float) -> bool:
         if len(self.arsenal) < self.settings.bullet_amount:
-            new_bullet = Bullet(self.game)
+            new_bullet = Bullet(self.game, y_pos)
             self.arsenal.add(new_bullet)
             return True
         return False
