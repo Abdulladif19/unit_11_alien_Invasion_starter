@@ -1,4 +1,9 @@
-
+"""
+Program: Lab12_Abdulladif.py
+Author: Abdulladif
+Purpose: This program has a vertically oriented fleet on the left side of the screen.
+Date: 7/1/2025
+"""
 import sys
 from time import sleep
 import pygame
@@ -10,6 +15,7 @@ from game_stats import GameStats
 
 
 class AlienInvasion:
+  
 
     def __init__(self) -> None:
         pygame.init()
@@ -101,11 +107,11 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.alien_fleet.fleet):
             self._ship_hit()
 
-        self._check_aliens_bottom()
+        self._check_aliens_right_edge()
 
-    def _check_aliens_bottom(self):
+    def _check_aliens_right_edge(self):
         for alien in self.alien_fleet.fleet.sprites():
-            if alien.rect.bottom >= self.settings.screen_h:
+            if alien.rect.right >= self.settings.screen_w:
                 self._ship_hit()
                 break
 
@@ -120,7 +126,8 @@ class AlienInvasion:
         else:
             self.game_active = False
 
-
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
+
+ 
